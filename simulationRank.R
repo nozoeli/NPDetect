@@ -31,7 +31,7 @@ for (i in 1 : A){
     unipstat[i, j] <- uniPermuTest(data, m, n)$pvalue
     bipstat[i, j] <- biPermuTest(data, m, n)$pvalue
     ranktest[i, j] <- biPermuTest(rankeddata, m, n)$pvalue
-    rowranktest[i, j] <- RowPermuTest(rowrankeddata, m, n)$pvalue
+    rowranktest[i, j] <- uniPermuTest(rowrankeddata, m, n)$pvalue
   }
 }
 write(unipstat, file = 'output_rank_unipermu.txt', ncolumns = A)
