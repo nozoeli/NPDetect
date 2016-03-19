@@ -9,3 +9,7 @@ File Description
 - simulationNormal.R : Generates random matrix with normal entries and elevated anomaly, and compares the testing result between unidimensional / bidimensional scan test and Monte Carlo.
 - simulationPoisson.R : Generates random matrix with Poisson entries and elevated anomaly, and compares the testing result between bidimensional scan test and Monte Carlo.
 - simulationRank.R : Generates random matrix with normal entries and elevated anomaly, and compares the testing result between unidimensional / bidimensional rank scan test and Monte Carlo.
+- evaluation.R : Generates graphs illustrating the simulation results. R package 'ggplot2' is needed.
+
+Reference:
+Shabalin, A. A., V. J. Weigman, C. M. Perou, and A. B. Nobel (2009). Finding large average submatrices in high dimensional data. The Annals of Applied Statistics 3 (3), 985-1012. (http://arxiv.org/abs/0905.1682)
