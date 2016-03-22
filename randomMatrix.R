@@ -16,7 +16,9 @@ poissonMatrix <- function(M, N, m, n, theta){
   # mu stands for the mean of the elevated matrix. mu >= 1 required.
   # The base distribution is Poi(1) - 1
   mu <- exp(theta)
-  mx1 <- c(rep(sqrt(mu - 1), m), rep(0, M - m)) %*% t(c(rep(sqrt(mu - 1), n), rep(0, N - n)))
-  mx <- matrix(rpois(M * N, as.vector(mx1 + 1)), M, N) - 1
+  mx1 <- matrix(1, M, N)
+  if (m * n != 0){
+    mx1[1:m, 1:n] <- matrix(mu, m, n)}
+  mx <- matrix(rpois(M * N, as.vector(mx1)), M, N) - 1
   return(mx)
 }
