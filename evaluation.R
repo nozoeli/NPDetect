@@ -1,71 +1,87 @@
 #-----------Install Package ggplot2 to run the code----------
 library('ggplot2')
 
-#-----------Normal entries----------------------------
+#-----------Normal entries (m = 10, n = 15)----------------------------
 #-----------Data construction-------------------------
-data_mc_normal <- as.vector(as.matrix(read.table('output_mc_normal.txt')))
-data_bi_normal <- as.vector(as.matrix(read.table('output_permu_normal.txt')))
-data_uni_normal <- as.vector(as.matrix(read.table('output_row_normal.txt')))
-data_collect_normal <- c(data_mc_normal, data_uni_normal, data_bi_normal)
+load('Normal10.Rdata')
+data_mc_normal10 <- as.vector(t(MCNormal10))
+data_bi_normal10 <- as.vector(t(biPermuNormal10))
+data_uni_normal10 <- as.vector(t(uniPermuNormal10))
+data_uni_rank10 <- as.vector(t(uniRanked10))
+data_bi_rank10 <- as.vector(t(biRanked10))
+data_collect_normal10 <- c(data_mc_normal10, data_uni_normal10, data_bi_normal10, data_uni_rank10, data_bi_rank10)
 tep_mean <- (1:8) * 0.125 + 0.5
-ele_mean <- rep(rep(tep_mean, each = length(data_mc_normal) / 8, ), 3)
-perm_method <- factor(rep(c('MC', 'Unidimensional', 'Bidimensional'), each = length(data_mc_normal)), c('MC', 'Unidimensional', 'Bidimensional'))
-data_normal <- data.frame('mean' = as.factor(ele_mean), 'method' = perm_method, 'data' = data_collect_normal)
+ele_mean <- rep(rep(tep_mean, each = length(data_mc_normal10) / 8, ), 5)
+perm_method <- factor(rep(c('MC', 'Unidimensional', 'Bidimensional', 'Unidimensional-Rank', 'Bidimensional-Rank'), each = length(data_mc_normal10)), c('MC', 'Unidimensional', 'Bidimensional', 'Unidimensional-Rank', 'Bidimensional-Rank'))
+data_normal10 <- data.frame('mean' = as.factor(ele_mean), 'method' = perm_method, 'data' = data_collect_normal10)
 # Constructed a dataset with variables as (elevated mean - permuting method - p-value) combo
 
 #----------Graphing----------------------------------
-p_normal <- ggplot(data_normal, aes(x = mean, y = data, color = method ))
-p_normal <- p_normal + geom_boxplot() + xlab("Elevated Mean (*theta)") + ylab("P-value") + ggtitle("Normal")
-p_normal <- p_normal + theme(legend.position="top") + scale_color_discrete("") + geom_vline(xintercept = 4, linetype = 2, color = 'purple')
+p_normal10 <- ggplot(data_normal10, aes(x = mean, y = data, color = method ))
+p_normal10 <- p_normal10 + geom_boxplot() + xlab("Elevated Mean (*theta)") + ylab("P-value") + ggtitle("Normal")
+p_normal10 <- p_normal10 + theme(legend.position="top") + scale_color_discrete("") + geom_vline(xintercept = 4, linetype = 2, color = 'purple')
 
-
-#-----------Poisson entries----------------------------
+#-----------Normal entries (m = 30, n = 10)----------------------------
 #-----------Data construction-------------------------
-data_mc_poi <- as.vector(as.matrix(read.table('output_poisson_mc.txt')))
-data_bi_poi <- as.vector(as.matrix(read.table('output_poisson_permu.txt')))
-data_collect_poi <- c(data_mc_poi, data_bi_poi)
-ele_mean2 <- rep(rep(tep_mean, each = length(data_mc_poi) / 8, ), 2)
-perm_method_poi <- factor(rep(c('MC', 'Bidimensional'), each = length(data_mc_poi)), c('MC', 'Bidimensional'))
-data_poi <- data.frame('mean' = as.factor(ele_mean2), 'method' = perm_method_poi, 'data' = data_collect_poi)
+load('Normal30.Rdata')
+data_mc_normal30 <- as.vector(t(MCNormal30))
+data_bi_normal30 <- as.vector(t(biPermuNormal30))
+data_uni_normal30 <- as.vector(t(uniPermuNormal30))
+data_uni_rank30 <- as.vector(t(uniRanked30))
+data_bi_rank30 <- as.vector(t(biRanked30))
+data_collect_normal30 <- c(data_mc_normal30, data_uni_normal30, data_bi_normal30, data_uni_rank30, data_bi_rank30)
+tep_mean <- (1:8) * 0.125 + 0.5
+ele_mean <- rep(rep(tep_mean, each = length(data_mc_normal30) / 8, ), 5)
+data_normal30 <- data.frame('mean' = as.factor(ele_mean), 'method' = perm_method, 'data' = data_collect_normal30)
+# Constructed a dataset with variables as (elevated mean - permuting method - p-value) combo
 
 #----------Graphing----------------------------------
-p_poi <- ggplot(data_poi, aes(x = mean, y = data, color = method ))
-p_poi <- p_poi + geom_boxplot() + xlab("Elevated Mean (*theta)") + ylab("P-value") + ggtitle("Poisson")
-p_poi <- p_poi + theme(legend.position="top") + scale_color_discrete("") + geom_vline(xintercept = 4, linetype = 2, color = 'purple')
+p_normal30 <- ggplot(data_normal30, aes(x = mean, y = data, color = method ))
+p_normal30 <- p_normal30 + geom_boxplot() + xlab("Elevated Mean (*theta)") + ylab("P-value") + ggtitle("Normal")
+p_normal30 <- p_normal30 + theme(legend.position="top") + scale_color_discrete("") + geom_vline(xintercept = 4, linetype = 2, color = 'purple')
 
 
-#-----------Rank methods (Unidimensional)---------------------
+
+#-----------Poisson entries (m = 10, n = 15)----------------------------
 #-----------Data construction-------------------------
-data_uni_perm <- as.vector(as.matrix(read.table('output_rank_unipermu.txt')))
-data_uni_rank <- as.vector(as.matrix(read.table('output_rank_rowranktest.txt')))
-data_collect_unirank <- c(data_uni_perm, data_uni_rank)
-tep_mean_rank <- (1:8) * 0.125 + 0.75
-ele_mean_rank <- rep(rep(tep_mean_rank, each = length(data_uni_perm) / 8, ), 2)
-perm_method_unirank <- factor(rep(c('Original Data', 'Ranked Data'), each = length(data_uni_rank)), c('Original Data', 'Ranked Data'))
-data_unirank <- data.frame('mean' = as.factor(ele_mean_rank), 'method' = perm_method_unirank, 'data' = data_collect_unirank)
+load('Poi10.Rdata')
+data_mc_poi10 <- as.vector(t(MCPoi10))
+data_bi_poi10 <- as.vector(t(biPermuPoi10))
+data_uni_poi10 <- as.vector(t(uniPermuPoi10))
+data_collect_poi10 <- c(data_mc_poi10, data_bi_poi10, data_uni_poi10)
+ele_mean2 <- rep(rep(tep_mean, each = length(data_mc_poi10) / 8, ), 3)
+perm_method_poi <- factor(rep(c('MC', 'Bidimensional', 'Unidimensional'), each = length(data_mc_poi10)), c('MC', 'Bidimensional', 'Unidimensional'))
+data_poi10 <- data.frame('mean' = as.factor(ele_mean2), 'method' = perm_method_poi, 'data' = data_collect_poi10)
 
 #----------Graphing----------------------------------
-p_unirank <- ggplot(data_unirank, aes(x = mean, y = data, color = method ))
-p_unirank <- p_unirank + geom_boxplot() + xlab("Elevated Mean (*theta)") + ylab("P-value") + ggtitle("Unidimensional Rank")
-p_unirank <- p_unirank + theme(legend.position="top") + scale_color_discrete("") + geom_vline(xintercept = 2, linetype = 2, color = 'purple')
+p_poi10 <- ggplot(data_poi10, aes(x = mean, y = data, color = method ))
+p_poi10 <- p_poi10 + geom_boxplot() + xlab("Elevated Mean (*theta)") + ylab("P-value") + ggtitle("Poisson")
+p_poi10 <- p_poi10 + theme(legend.position="top") + scale_color_discrete("") + geom_vline(xintercept = 4, linetype = 2, color = 'purple')
 
-
-#-----------Rank methods (Bidimensional)---------------------
+#-----------Poisson entries (m = 30, n = 10)----------------------------
 #-----------Data construction-------------------------
-data_bi_perm <- as.vector(as.matrix(read.table('output_rank_bipermu.txt')))
-data_bi_rank <- as.vector(as.matrix(read.table('output_rank_ranktest.txt')))
-data_collect_birank <- c(data_bi_perm, data_bi_rank)
-perm_method_birank <- factor(rep(c('Original Data', 'Ranked Data'), each = length(data_bi_rank)), c('Original Data', 'Ranked Data'))
-data_birank <- data.frame('mean' = as.factor(ele_mean_rank), 'method' = perm_method_birank, 'data' = data_collect_birank)
+load('Poi30.Rdata')
+data_mc_poi30 <- as.vector(t(MCPoi30))
+data_bi_poi30 <- as.vector(t(biPermuPoi30))
+data_uni_poi30 <- as.vector(t(uniPermuPoi30))
+data_collect_poi30 <- c(data_mc_poi30, data_bi_poi30, data_uni_poi30)
+data_poi30 <- data.frame('mean' = as.factor(ele_mean2), 'method' = perm_method_poi, 'data' = data_collect_poi30)
 
 #----------Graphing----------------------------------
-p_birank <- ggplot(data_birank, aes(x = mean, y = data, color = method ))
-p_birank <- p_birank + geom_boxplot() + xlab("Elevated Mean (*theta)") + ylab("P-value") + ggtitle("Bidimensional Rank")
-p_birank <- p_birank + theme(legend.position="top") + scale_color_discrete("") + geom_vline(xintercept = 2, linetype = 2, color = 'purple')
+p_poi30 <- ggplot(data_poi30, aes(x = mean, y = data, color = method ))
+p_poi30 <- p_poi30 + geom_boxplot() + xlab("Elevated Mean (*theta)") + ylab("P-value") + ggtitle("Poisson")
+p_poi30 <- p_poi30 + theme(legend.position="top") + scale_color_discrete("") + geom_vline(xintercept = 4, linetype = 2, color = 'purple')
+
 
 
 #-----------------Result----------------------
-p_normal  # Normal entries, comparison between MC/Unidimensional/Bidimensional methods
-p_poi  # Poisson entries, comparison between MC/Bidimensional methods
-p_unirank  # Comparison between unidimensional permutation / ranked unidimensional methods
-p_birank  # Comparison between bidimensional permutation / ranked bidimensional methods
+p_normal10  
+# Normal entries, m = 10, n = 15, comparison between 
+# MC/Unidimensional/Bidimensional/Unidimensional Rank/Bidimensional Rank methods
+p_normal30
+# Same as above, with m = 30, n = 10
+p_poi10  
+# Poisson entries, m = 10, n = 15, 
+#comparison between MC/Bidimensional/Unidimensional methods
+p_poi30
+# Same as above, with m = 30, n = 10
