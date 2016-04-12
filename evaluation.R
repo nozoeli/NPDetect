@@ -18,7 +18,7 @@ data_normal10 <- data.frame('mean' = as.factor(ele_mean), 'method' = perm_method
 
 #----------Graphing----------------------------------
 p_normal10 <- ggplot(data_normal10, aes(x = mean, y = data, color = method ))
-p_normal10 <- p_normal10 + geom_boxplot() + xlab(bquote("Elevated Mean ("* theta['crit'] *')')) + ylab("P-value") + ggtitle("Normal (m = 10, n = 15)")
+p_normal10 <- p_normal10 + geom_boxplot() + xlab(bquote("Elevated Mean ( \U00D7"* theta['crit'] *' )')) + ylab("P-value") + ggtitle("Normal (m = 10, n = 15)")
 p_normal10 <- p_normal10 + theme(legend.position="top") + scale_color_discrete("") + geom_vline(xintercept = 4, linetype = 2, color = 'purple')
 
 #-----------Normal entries (m = 30, n = 10)----------------------------
@@ -37,7 +37,7 @@ data_normal30 <- data.frame('mean' = as.factor(ele_mean), 'method' = perm_method
 
 #----------Graphing----------------------------------
 p_normal30 <- ggplot(data_normal30, aes(x = mean, y = data, color = method ))
-p_normal30 <- p_normal30 + geom_boxplot() + xlab(bquote("Elevated Mean ("* theta['crit'] *')')) + ylab("P-value") + ggtitle("Normal (m = 30, n = 10)")
+p_normal30 <- p_normal30 + geom_boxplot() + xlab(bquote("Elevated Mean ( \U00D7"* theta['crit'] *' )')) + ylab("P-value") + ggtitle("Normal (m = 30, n = 10)")
 p_normal30 <- p_normal30 + theme(legend.position="top") + scale_color_discrete("") + geom_vline(xintercept = 4, linetype = 2, color = 'purple')
 
 
@@ -55,7 +55,7 @@ data_poi10 <- data.frame('mean' = as.factor(ele_mean2), 'method' = perm_method_p
 
 #----------Graphing----------------------------------
 p_poi10 <- ggplot(data_poi10, aes(x = mean, y = data, color = method ))
-p_poi10 <- p_poi10 + geom_boxplot() + xlab(bquote("Elevated Mean ("* theta['crit'] *')')) + ylab("P-value") + ggtitle("Poisson (m = 10, n = 15)")
+p_poi10 <- p_poi10 + geom_boxplot() + xlab(bquote("Elevated Mean ( \U00D7"* theta['crit'] *' )')) + ylab("P-value") + ggtitle("Poisson (m = 10, n = 15)")
 p_poi10 <- p_poi10 + theme(legend.position="top") + scale_color_discrete("") + geom_vline(xintercept = 4, linetype = 2, color = 'purple')
 
 #-----------Poisson entries (m = 30, n = 10)----------------------------
@@ -69,7 +69,7 @@ data_poi30 <- data.frame('mean' = as.factor(ele_mean2), 'method' = perm_method_p
 
 #----------Graphing----------------------------------
 p_poi30 <- ggplot(data_poi30, aes(x = mean, y = data, color = method ))
-p_poi30 <- p_poi30 + geom_boxplot() + xlab(bquote("Elevated Mean ("* theta['crit'] *')')) + ylab("P-value") + ggtitle("Poisson (m = 30, n = 10)")
+p_poi30 <- p_poi30 + geom_boxplot() + xlab(bquote("Elevated Mean ( \U00D7"* theta['crit'] *' )')) + ylab("P-value") + ggtitle("Poisson (m = 30, n = 10)")
 p_poi30 <- p_poi30 + theme(legend.position="top") + scale_color_discrete("") + geom_vline(xintercept = 4, linetype = 2, color = 'purple')
 
 #-----------Normal entries, rank ver (m = 10, n = 15)----------------------------
@@ -81,7 +81,7 @@ data_rank10 <- data.frame('mean' = as.factor(ele_mean), 'method' = perm_method_r
 
 #----------Graphing----------------------------------
 p_rank10 <- ggplot(data_rank10, aes(x = mean, y = data, color = method ))
-p_rank10 <- p_rank10 + geom_boxplot() + xlab(bquote("Elevated Mean ("* theta['crit'] *')')) + ylab("P-value") + ggtitle("Normal, ranked (m = 10, n = 15)")
+p_rank10 <- p_rank10 + geom_boxplot() + xlab(bquote("Elevated Mean ( \U00D7"* theta['crit'] *' )')) + ylab("P-value") + ggtitle("Normal, ranked (m = 10, n = 15)")
 p_rank10 <- p_rank10 + theme(legend.position="top") + scale_color_discrete("") + geom_vline(xintercept = 4, linetype = 2, color = 'purple')
 
 #-----------Normal entries, rank ver (m = 30, n = 10)----------------------------
@@ -92,7 +92,7 @@ data_rank30 <- data.frame('mean' = as.factor(ele_mean), 'method' = perm_method_r
 
 #----------Graphing----------------------------------
 p_rank30 <- ggplot(data_rank30, aes(x = mean, y = data, color = method ))
-p_rank30 <- p_rank30 + geom_boxplot() + xlab(bquote("Elevated Mean ("* theta['crit'] *')')) + ylab("P-value") + ggtitle("Normal, ranked (m = 30, n = 10)")
+p_rank30 <- p_rank30 + geom_boxplot() + xlab(bquote("Elevated Mean ( \U00D7"* theta['crit'] *' )')) + ylab("P-value") + ggtitle("Normal, ranked (m = 30, n = 10)")
 p_rank30 <- p_rank30 + theme(legend.position="top") + scale_color_discrete("") + geom_vline(xintercept = 4, linetype = 2, color = 'purple')
 
 
